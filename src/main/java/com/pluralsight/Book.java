@@ -46,4 +46,9 @@ public class Book {
         this.checkedOutTo = "";
         System.out.println("Thank you for checking in " + name);
     }
+
+    @Override
+    public String toString() {
+        return "id: " + this.id + " | " + "ISBN: " + this.isbn + " | " + "Title: " + this.title;
+    }
 }
