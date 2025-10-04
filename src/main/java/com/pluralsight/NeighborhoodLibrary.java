@@ -2,7 +2,7 @@ package com.pluralsight;
 import java.util.Scanner;
 
 public class NeighborhoodLibrary {
-    public static Book[] libraryBook = new Book[20];
+    private static Book[] libraryBook = new Book[20];
 
     public static void main(String[] args) {
         libraryBook[0] = new Book(1, "978-1-23456-789-7", "The Last Ember", false, "");
@@ -38,10 +38,12 @@ public class NeighborhoodLibrary {
             System.out.println("3. Exit");
             System.out.println("Enter your choice (1-3): ");
             int command = myScanner.nextInt();
+            myScanner.nextLine();
 
             switch (command) {
                 case 1:
                     listAllBooks();
+                    checkoutABook(myScanner);
                     break;
                 case 2:
 
@@ -51,7 +53,7 @@ public class NeighborhoodLibrary {
                     inLibrary = true;
                     break;
                 default:
-                    System.out.println("Invalid Input! Please choose from numbers (1-3)");
+                    System.out.println("Invalid Input! Please choose from numbers (1-3)\n");
             }
         }
 
@@ -59,15 +61,50 @@ public class NeighborhoodLibrary {
 
     }
 
+    public static void showCheckedOutBooks() {
+        System.out.println("Checked-out Books");
+        System.out.println("-------------------");
+
+        boolean found = false;
+
+        // I believe the use of for each loop is the best in my case when the array is nearly full
+        // I can also use another variable to store the actual number of books for a wider use case
+        for (Book book : libraryBook) {
+            if (book.getIsCheckedOut()) {
+                System.out.println(book);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("There are no books checked-out");
+        }
+    }
+
+    public static void checkoutABook(Scanner scanner) {
+        System.out.println("Enter the id of the book you want to check-out (0 to cancel): ");
+        int idOfBook = scanner.nextInt();
+        scanner.nextLine();
+
+        if (idOfBook > 0 && idOfBook < libraryBook.length) {
+            System.out.print("Enter your name: ");
+            String checkoutName = scanner.nextLine();
+
+            libraryBook[idOfBook - 1].checkOut(checkoutName, libraryBook[idOfBook - 1].getTitle());
+        } else {
+            System.out.println("Please choose an id number of the book that is available\n");
+        }
+    }
+
     public static void listAllBooks() {
         System.out.println("Available Books");
         System.out.println("-------------------");
 
-        // I believe the use library.length can only be used when the array is nearly full.
-        // I can also use another variable to store the actual number of books for a wider use case.
-        for (int i = 0; i < libraryBook.length; i++) {
-            System.out.println(libraryBook[i]);
+        // Also applied for each loop here for my use case
+        for (Book book : libraryBook) {
+            System.out.println(book);
         }
-        System.out.println();
+
+        System.out.println("-------------------");
     }
 }

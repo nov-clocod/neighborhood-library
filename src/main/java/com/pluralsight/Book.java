@@ -35,10 +35,10 @@ public class Book {
         return this.checkedOutTo;
     }
 
-    public void checkOut(String name) {
+    public void checkOut(String name, String title) {
         this.isCheckedOut = true;
         this.checkedOutTo = name;
-        System.out.println(name + " Checked out!");
+        System.out.println("Thank you " + name + " for checking out " + title);
     }
 
     public void checkIn(String name) {
