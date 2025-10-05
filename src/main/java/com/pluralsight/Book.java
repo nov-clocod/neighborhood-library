@@ -38,13 +38,13 @@ public class Book {
     public void checkOut(String name, String title) {
         this.isCheckedOut = true;
         this.checkedOutTo = name;
-        System.out.println("Thank you " + name + " for checking out " + title);
+        System.out.println("Thank you " + name + " for checking out: " + title + "\n");
     }
 
-    public void checkIn(String name) {
+    public void checkIn(String title) {
         this.isCheckedOut = false;
         this.checkedOutTo = "";
-        System.out.println("Thank you for checking in " + name);
+        System.out.println("Thank you for checking in: " + title + "\n");
     }
 
     @Override

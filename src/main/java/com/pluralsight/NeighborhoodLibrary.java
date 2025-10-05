@@ -36,7 +36,7 @@ public class NeighborhoodLibrary {
             System.out.println("1. Show Available Books");
             System.out.println("2. Show Checked Out Books");
             System.out.println("3. Exit");
-            System.out.println("Enter your choice (1-3): ");
+            System.out.print("Enter your choice (1-3): ");
             int command = myScanner.nextInt();
             myScanner.nextLine();
 
@@ -46,7 +46,7 @@ public class NeighborhoodLibrary {
                     checkoutABook(myScanner);
                     break;
                 case 2:
-
+                    showCheckedOutBooks(myScanner);
                     break;
                 case 3:
                     System.out.println("Thank you for visiting the library, I'll see you again");
@@ -61,9 +61,9 @@ public class NeighborhoodLibrary {
 
     }
 
-    public static void showCheckedOutBooks() {
-        System.out.println("Checked-out Books");
-        System.out.println("-------------------");
+    public static void showCheckedOutBooks(Scanner scanner) {
+        System.out.println("Checked Out Books");
+        System.out.println("------------------");
 
         boolean found = false;
 
@@ -73,11 +73,26 @@ public class NeighborhoodLibrary {
             if (book.getIsCheckedOut()) {
                 System.out.println(book);
                 found = true;
+                System.out.println();
+
+                System.out.print("Press \"C\" to check in a book or \"X\" to go back to the library: ");
+                String checkIn = scanner.nextLine();
+
+                if (checkIn.equalsIgnoreCase("C") && checkIn.length() < 2) {
+                    System.out.print("Enter the id of the book you want to check in: ");
+                    int bookCheckInId = scanner.nextInt();
+
+                    libraryBook[bookCheckInId - 1].checkIn(libraryBook[bookCheckInId - 1].getTitle());
+                } else if (checkIn.equalsIgnoreCase("X") && checkIn.length() < 2) {
+                    System.out.println();
+                } else {
+                    System.out.println("Invalid Input! Returning to the library \n");
+                }
             }
         }
 
         if (!found) {
-            System.out.println("There are no books checked-out");
+            System.out.println("There are no books checked out\n");
         }
     }
 
@@ -102,7 +117,8 @@ public class NeighborhoodLibrary {
 
         // Also applied for each loop here for my use case
         for (Book book : libraryBook) {
-            System.out.println(book);
+            if (!book.getIsCheckedOut())
+                System.out.println(book);
         }
 
         System.out.println("-------------------");
