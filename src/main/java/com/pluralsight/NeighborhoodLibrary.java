@@ -72,9 +72,10 @@ public class NeighborhoodLibrary {
 
         // I believe the use of for each loop is the best in my case when the array is nearly full
         // I can also use another variable to store the actual number of books for a wider use case
+        // The prompt to check in the book is skipped if there are no books checked out
         for (Book book : libraryBook) {
             if (book.getIsCheckedOut()) {
-                System.out.println(book);
+                System.out.println(book + " | " + book.getCheckedOutTo());
                 found = true;
                 System.out.println();
 
