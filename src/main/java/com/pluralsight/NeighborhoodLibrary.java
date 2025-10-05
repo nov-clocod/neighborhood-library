@@ -35,20 +35,23 @@ public class NeighborhoodLibrary {
             System.out.println("--------------------------------");
             System.out.println("1. Show Available Books");
             System.out.println("2. Show Checked Out Books");
-            System.out.println("3. Exit");
+            System.out.println("3. Exit\n");
             System.out.print("Enter your choice (1-3): ");
             int command = myScanner.nextInt();
             myScanner.nextLine();
 
             switch (command) {
                 case 1:
+                    System.out.println();
                     listAllBooks();
                     checkoutABook(myScanner);
                     break;
                 case 2:
+                    System.out.println();
                     showCheckedOutBooks(myScanner);
                     break;
                 case 3:
+                    System.out.println();
                     System.out.println("Thank you for visiting the library, I'll see you again");
                     inLibrary = true;
                     break;
@@ -78,12 +81,13 @@ public class NeighborhoodLibrary {
                 System.out.print("Press \"C\" to check in a book or \"X\" to go back to the library: ");
                 String checkIn = scanner.nextLine();
 
-                if (checkIn.equalsIgnoreCase("C") && checkIn.length() < 2) {
+                if (checkIn.equalsIgnoreCase("C")) {
+                    System.out.println(1);
                     System.out.print("Enter the id of the book you want to check in: ");
                     int bookCheckInId = scanner.nextInt();
 
                     libraryBook[bookCheckInId - 1].checkIn(libraryBook[bookCheckInId - 1].getTitle());
-                } else if (checkIn.equalsIgnoreCase("X") && checkIn.length() < 2) {
+                } else if (checkIn.equalsIgnoreCase("X")) {
                     System.out.println();
                 } else {
                     System.out.println("Invalid Input! Returning to the library \n");
@@ -92,12 +96,12 @@ public class NeighborhoodLibrary {
         }
 
         if (!found) {
-            System.out.println("There are no books checked out\n");
+            System.out.println("There are no books checked out! Returning to the library\n");
         }
     }
 
     public static void checkoutABook(Scanner scanner) {
-        System.out.println("Enter the id of the book you want to check-out (0 to cancel): ");
+        System.out.print("Enter the id of the book you want to check-out (0 to cancel): ");
         int idOfBook = scanner.nextInt();
         scanner.nextLine();
 
@@ -121,6 +125,6 @@ public class NeighborhoodLibrary {
                 System.out.println(book);
         }
 
-        System.out.println("-------------------");
+        System.out.println("-------------------\n");
     }
 }
