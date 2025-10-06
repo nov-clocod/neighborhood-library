@@ -65,8 +65,6 @@ public class NeighborhoodLibrary {
     }
 
     public static void showCheckedOutBooks(Scanner scanner) {
-        System.out.println("Checked Out Books");
-        System.out.println("------------------");
 
         boolean found = false;
 
@@ -75,6 +73,8 @@ public class NeighborhoodLibrary {
         // The prompt to check in the book is skipped if there are no books checked out
         for (Book book : libraryBook) {
             if (book.getIsCheckedOut()) {
+                System.out.println("Checked Out Books");
+                System.out.println("------------------");
                 System.out.println(book + " | " + book.getCheckedOutTo());
                 found = true;
                 System.out.println();
@@ -83,11 +83,11 @@ public class NeighborhoodLibrary {
                 String checkIn = scanner.nextLine();
 
                 if (checkIn.equalsIgnoreCase("C")) {
-                    System.out.println(1);
+                    System.out.println();
                     System.out.print("Enter the id of the book you want to check in: ");
                     int bookCheckInId = scanner.nextInt();
 
-                    libraryBook[bookCheckInId - 1].checkIn(libraryBook[bookCheckInId - 1].getTitle());
+                    libraryBook[bookCheckInId - 1].checkIn(libraryBook[bookCheckInId - 1], libraryBook[bookCheckInId - 1].getTitle());
                 } else if (checkIn.equalsIgnoreCase("X")) {
                     System.out.println();
                 } else {

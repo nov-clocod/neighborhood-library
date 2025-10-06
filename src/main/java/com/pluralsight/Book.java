@@ -41,10 +41,14 @@ public class Book {
         System.out.println("Thank you " + name + " for checking out: " + title + "\n");
     }
 
-    public void checkIn(String title) {
-        this.isCheckedOut = false;
-        this.checkedOutTo = "";
-        System.out.println("Thank you for checking in: " + title + "\n");
+    public void checkIn(Book book, String title) {
+        if (book.isCheckedOut) {
+            this.isCheckedOut = false;
+            this.checkedOutTo = "";
+            System.out.println("Thank you for checking in: " + title + "\n");
+        } else {
+            System.out.println("Invalid input, "+ "\"" + title + "\"" + " is available. Returning to the library\n");
+        }
     }
 
     @Override
